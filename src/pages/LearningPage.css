@@ -1,0 +1,181 @@
+.learning-page {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 110px 0 120px;
+  color: #181818;
+}
+
+/* HERO */
+
+.learning-hero {
+  max-width: 800px;
+  margin-bottom: 100px;
+}
+
+.learning-eyebrow {
+  margin: 0 0 25px;
+
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+
+  color: #888;
+}
+
+.learning-hero h1 {
+  margin: 0;
+
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.95;
+
+  letter-spacing: -0.055em;
+  font-weight: 500;
+}
+
+.learning-intro {
+  max-width: 640px;
+
+  margin-top: 36px;
+
+  color: #666;
+
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* GRID */
+
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 26px;
+}
+
+.learning-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.learning-card-visual {
+  min-height: 330px;
+
+  padding: 28px;
+
+  border-radius: 26px;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr auto;
+
+  transition: transform 0.25s ease;
+}
+
+.learning-card:hover .learning-card-visual {
+  transform: translateY(-5px);
+}
+
+.learning-number {
+  font-size: 11px;
+  color: #777;
+}
+
+.learning-status {
+  justify-self: end;
+
+  padding: 7px 11px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(0, 0, 0, 0.18);
+
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.learning-card-visual h2 {
+  grid-column: 1 / -1;
+
+  align-self: end;
+
+  margin: 0;
+
+  max-width: 400px;
+
+  font-size: 42px;
+
+  line-height: 1;
+
+  letter-spacing: -0.045em;
+
+  font-weight: 500;
+}
+
+/* CONTENT */
+
+.learning-card-content {
+  padding: 22px 6px 40px;
+}
+
+.learning-category {
+  margin: 0 0 12px;
+
+  font-size: 11px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  color: #999;
+}
+
+.learning-summary {
+  margin: 0;
+
+  max-width: 520px;
+
+  color: #555;
+
+  line-height: 1.65;
+
+  font-size: 15px;
+}
+
+.learning-topic-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin-top: 22px;
+}
+
+.learning-topic-list span {
+  padding: 6px 10px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+
+  color: #666;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+  .learning-page {
+    width: min(100% - 32px, 700px);
+    padding-top: 80px;
+  }
+
+  .learning-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-card-visual {
+    min-height: 280px;
+  }
+}

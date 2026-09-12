@@ -1,0 +1,196 @@
+.note-detail-page {
+  width: min(860px, calc(100% - 48px));
+
+  margin: 0 auto;
+
+  padding: 100px 0 120px;
+
+  color: #181818;
+}
+
+/* BACK */
+
+.note-back {
+  display: inline-block;
+
+  margin-bottom: 65px;
+
+  color: #777;
+
+  font-size: 13px;
+
+  text-decoration: none;
+}
+
+.note-back:hover {
+  color: #111;
+}
+
+/* HEADER */
+
+.note-detail-header {
+  margin-bottom: 70px;
+}
+
+.note-detail-category {
+  margin: 0 0 20px;
+
+  font-size: 11px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.12em;
+
+  color: #999;
+}
+
+.note-detail-header h1 {
+  margin: 0;
+
+  max-width: 800px;
+
+  font-size: clamp(48px, 7vw, 82px);
+
+  line-height: 1;
+
+  letter-spacing: -0.05em;
+
+  font-weight: 500;
+}
+
+.note-detail-meta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  margin-top: 30px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid #ddd;
+
+  color: #888;
+
+  font-size: 11px;
+}
+
+/* INTRO */
+
+.note-intro {
+  padding: 55px 0;
+
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.note-intro p {
+  margin: 0;
+
+  font-size: clamp(24px, 3vw, 34px);
+
+  line-height: 1.35;
+
+  letter-spacing: -0.025em;
+}
+
+/* CONTENT */
+
+.note-content {
+  padding: 65px 0;
+}
+
+.note-content p {
+  max-width: 720px;
+
+  margin: 0 0 30px;
+
+  font-size: 18px;
+
+  line-height: 1.85;
+
+  color: #444;
+}
+
+.note-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* TAGS */
+
+.note-tags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  padding-bottom: 80px;
+}
+
+.note-tags span {
+  padding: 7px 12px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 999px;
+
+  color: #666;
+
+  font-size: 11px;
+}
+
+/* FOOTER */
+
+.note-detail-footer {
+  padding-top: 70px;
+
+  border-top: 1px solid #ddd;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-end;
+}
+
+.note-detail-footer p {
+  margin: 0;
+
+  color: #999;
+
+  font-size: 12px;
+}
+
+.note-detail-footer a {
+  color: #111;
+
+  text-decoration: none;
+
+  font-size: clamp(26px, 4vw, 42px);
+
+  letter-spacing: -0.035em;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .note-detail-page {
+    width: min(100% - 32px, 650px);
+
+    padding-top: 70px;
+  }
+
+  .note-detail-footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+  .note-content p {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,19 @@
+.page-container {
+  width: 100%;
+  max-width: 1180px;
+
+  margin: 0 auto;
+  padding: 24px 32px 100px;
+}
+
+.site-footer {
+  border-top: 1px solid rgba(31, 31, 31, 0.06);
+
+  padding: 28px 32px;
+
+  text-align: center;
+  font-size: 14px;
+  color: #7a746d;
+
+  background: rgba(255, 255, 255, 0.35);
+}

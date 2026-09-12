@@ -1,58 +1,61 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
-import { client } from '../lib/sanity'
-
-type Post = {
-  _id: string
-  title: string
-  description?: string
-  slug?: {
-    current: string
-  }
-}
+import { notes } from '../data/notes'
+import './NotesPage.css'
 
 function NotesPage() {
-  const [posts, setPosts] = useState<Post[]>([])
-
-  useEffect(() => {
-    client
-      .fetch<Post[]>(`
-        *[_type == "post"] {
-          _id,
-          title,
-          description,
-          slug
-        }
-      `)
-      .then((data) => {
-        setPosts(data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }, [])
-
   return (
-    <div>
-      <h1>Notes</h1>
+    <main className="notes-page">
+      <section className="notes-hero">
+        <p className="notes-eyebrow">
+          Notes · thoughts · things worth keeping
+        </p>
 
-      {posts.map((post) => (
-        <div key={post._id}>
-          <h2>{post.title}</h2>
+        <h1>
+          Small things
+          <br />
+          I don't want to forget.
+        </h1>
 
-          {post.description && (
-            <p>{post.description}</p>
-          )}
+        <p>
+          Short notes from coding, learning and building things.
+          Mostly written while I'm trying to understand something properly.
+        </p>
+      </section>
 
-          {post.slug?.current && (
-            <Link to={`/notes/${post.slug.current}`}>
-              Read more
-            </Link>
-          )}
-        </div>
-      ))}
-    </div>
+      <section className="notes-list">
+        {notes.map((note, index) => (
+          <Link
+            key={note.slug}
+            to={`/notes/${note.slug}`}
+            className="note-row"
+          >
+            <div className="note-row-index">
+              {String(index + 1).padStart(2, '0')}
+            </div>
+
+            <div className="note-row-date">
+              {note.date}
+            </div>
+
+            <div className="note-row-main">
+              <p className="note-category">
+                {note.category}
+              </p>
+
+              <h2>{note.title}</h2>
+
+              <p className="note-excerpt">
+                {note.excerpt}
+              </p>
+            </div>
+
+            <div className="note-row-arrow">
+              ↗
+            </div>
+          </Link>
+        ))}
+      </section>
+    </main>
   )
 }
 
