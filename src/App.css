@@ -1,0 +1,98 @@
+.home {
+  min-height: 100vh;
+}
+
+.hero {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 60px;
+
+  gap: 60px;
+}
+
+.hero-text {
+  max-width: 650px;
+}
+
+.hero-label {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.hero h1 {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.hero h2 {
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.hero h2 span {
+  color: #4f7fa3;
+}
+
+.hero-description {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 12px 22px;
+  border-radius: 10px;
+
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.primary-button {
+  background-color: #3d7ca8;
+  color: white;
+}
+
+.secondary-button {
+  border: 1px solid #3d7ca8;
+  color: #3d7ca8;
+}
+
+.hero-dog {
+  flex-shrink: 0;
+}
+
+.dog-placeholder {
+  width: 320px;
+  height: 320px;
+
+  border-radius: 50%;
+
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 30px;
+}
+
+.dog-image {
+  width: 320px;
+  height: 320px;
+
+  object-fit: contain;
+}
