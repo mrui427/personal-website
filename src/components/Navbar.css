@@ -1,15 +1,14 @@
 .site-navbar {
   position: sticky;
-
   top: 0;
-
   z-index: 100;
 
-  background: rgba(247, 247, 244, 0.92);
+  background: rgba(247, 247, 244, 0.78);
 
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .navbar-inner {
@@ -39,6 +38,15 @@
   font-weight: 600;
 
   letter-spacing: -0.04em;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.navbar-brand:hover {
+  opacity: 0.72;
+  transform: translateY(-1px);
 }
 
 .navbar-links {
@@ -46,11 +54,17 @@
 
   align-items: center;
 
-  gap: 28px;
+  gap: 8px;
 }
 
 .navbar-link {
   position: relative;
+
+  padding: 9px 15px;
+
+  border: 1px solid transparent;
+
+  border-radius: 999px;
 
   color: #777;
 
@@ -58,30 +72,46 @@
 
   font-size: 13px;
 
-  transition: color var(--transition-fast);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .navbar-link:hover {
   color: #111;
+
+  background: rgba(255, 255, 255, 0.38);
+
+  transform: translateY(-1px);
 }
 
 .navbar-link.active {
   color: #111;
+
+  background: rgba(255, 255, 255, 0.58);
+
+  border-color: rgba(255, 255, 255, 0.82);
+
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.025);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
+.navbar-link.active:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* 不再使用下面那条 active 横线 */
+
 .navbar-link.active::after {
-  content: '';
-
-  position: absolute;
-
-  left: 0;
-  right: 0;
-
-  bottom: -8px;
-
-  height: 1px;
-
-  background: #111;
+  display: none;
 }
 
 /* MOBILE */
@@ -92,10 +122,12 @@
   }
 
   .navbar-links {
-    gap: 16px;
+    gap: 6px;
   }
 
   .navbar-link {
+    padding: 8px 11px;
+
     font-size: 11px;
   }
 
@@ -110,12 +142,16 @@
 
     white-space: nowrap;
 
-    max-width: calc(100vw - 110px);
+    max-width: calc(100vw - 105px);
 
     scrollbar-width: none;
   }
 
   .navbar-links::-webkit-scrollbar {
     display: none;
+  }
+
+  .navbar-link {
+    flex-shrink: 0;
   }
 }

@@ -1,13 +1,64 @@
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { getProjectBySlug } from '../data/projects'
+
+import { getProjectBySlug } from '../lib/projectQueries'
+
 import './ProjectDetailPage.css'
+
+type Project = {
+  _id: string
+  title: string
+  slug: string
+  subtitle?: string
+  year?: string
+  category?: string
+  role?: string
+  stack?: string[]
+  overview?: string
+  problem?: string
+  solution?: string
+  highlights?: string[]
+  responsibilities?: string[]
+  learnings?: string[]
+  accent?: string
+  github?: string
+  demo?: string
+}
 
 function ProjectDetailPage() {
   const { slug } = useParams()
 
-  const project = slug
-    ? getProjectBySlug(slug)
-    : undefined
+  const [project, setProject] = useState<Project | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    if (!slug) {
+      setLoading(false)
+      return
+    }
+
+    getProjectBySlug(slug)
+      .then((data) => {
+        setProject(data)
+      })
+      .catch((error) => {
+        console.error('Failed to fetch project:', error)
+        setProject(null)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [slug])
+
+  if (loading) {
+    return (
+      <main className="project-detail-page">
+        <div className="project-not-found">
+          <p>Loading project...</p>
+        </div>
+      </main>
+    )
+  }
 
   if (!project) {
     return (
@@ -42,38 +93,53 @@ function ProjectDetailPage() {
         <div className="project-detail-heading">
 
           <p className="project-detail-category">
-            {project.category} · {project.year}
+            {project.category || 'Project'}
+
+            {project.year && (
+              <>
+                {' · '}
+                {project.year}
+              </>
+            )}
           </p>
 
           <h1>
             {project.title}
           </h1>
 
-          <p className="project-detail-subtitle">
-            {project.subtitle}
-          </p>
+          {project.subtitle && (
+            <p className="project-detail-subtitle">
+              {project.subtitle}
+            </p>
+          )}
 
         </div>
 
         <div className="project-detail-meta">
 
-          <div>
-            <span>Role</span>
-            <p>{project.role}</p>
-          </div>
+          {project.role && (
+            <div>
+              <span>Role</span>
+              <p>{project.role}</p>
+            </div>
+          )}
 
-          <div>
-            <span>Year</span>
-            <p>{project.year}</p>
-          </div>
+          {project.year && (
+            <div>
+              <span>Year</span>
+              <p>{project.year}</p>
+            </div>
+          )}
 
-          <div>
-            <span>Stack</span>
+          {project.stack && project.stack.length > 0 && (
+            <div>
+              <span>Stack</span>
 
-            <p>
-              {project.stack.join(', ')}
-            </p>
-          </div>
+              <p>
+                {project.stack.join(', ')}
+              </p>
+            </div>
+          )}
 
         </div>
 
@@ -83,7 +149,10 @@ function ProjectDetailPage() {
 
       <section
         className="project-cover"
-        style={{ backgroundColor: project.accent }}
+        style={{
+          backgroundColor:
+            project.accent || '#e8e8e8',
+        }}
       >
         <div className="project-cover-inner">
 
@@ -95,145 +164,162 @@ function ProjectDetailPage() {
             ✳
           </div>
 
-          <p>
-            {project.subtitle}
-          </p>
+          {project.subtitle && (
+            <p>
+              {project.subtitle}
+            </p>
+          )}
 
         </div>
       </section>
 
       {/* overview */}
 
-      <section className="project-section project-intro-section">
+      {project.overview && (
+        <section className="project-section project-intro-section">
 
-        <p className="project-section-label">
-          01 / Overview
-        </p>
+          <p className="project-section-label">
+            01 / Overview
+          </p>
 
-        <div className="project-large-copy">
-          {project.overview}
-        </div>
+          <div className="project-large-copy">
+            {project.overview}
+          </div>
 
-      </section>
+        </section>
+      )}
 
       {/* problem / solution */}
 
-      <section className="project-two-column">
+      {(project.problem || project.solution) && (
+        <section className="project-two-column">
 
-        <div className="project-info-block">
+          {project.problem && (
+            <div className="project-info-block">
 
-          <p className="project-section-label">
-            02 / The problem
-          </p>
+              <p className="project-section-label">
+                02 / The problem
+              </p>
 
-          <p>
-            {project.problem}
-          </p>
+              <p>
+                {project.problem}
+              </p>
 
-        </div>
+            </div>
+          )}
 
-        <div className="project-info-block">
+          {project.solution && (
+            <div className="project-info-block">
 
-          <p className="project-section-label">
-            03 / The approach
-          </p>
+              <p className="project-section-label">
+                03 / The approach
+              </p>
 
-          <p>
-            {project.solution}
-          </p>
+              <p>
+                {project.solution}
+              </p>
 
-        </div>
+            </div>
+          )}
 
-      </section>
+        </section>
+      )}
 
       {/* highlights */}
 
-      <section className="project-section">
+      {project.highlights && project.highlights.length > 0 && (
+        <section className="project-section">
 
-        <p className="project-section-label">
-          04 / Key features
-        </p>
+          <p className="project-section-label">
+            04 / Key features
+          </p>
 
-        <div className="project-feature-grid">
+          <div className="project-feature-grid">
 
-          {project.highlights.map(
-            (highlight, index) => (
-              <div
-                key={highlight}
-                className="project-feature-card"
-              >
-                <span>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
+            {project.highlights.map(
+              (highlight, index) => (
+                <div
+                  key={`${highlight}-${index}`}
+                  className="project-feature-card"
+                >
+                  <span>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
 
-                <p>
-                  {highlight}
-                </p>
-              </div>
-            )
-          )}
+                  <p>
+                    {highlight}
+                  </p>
+                </div>
+              )
+            )}
 
-        </div>
+          </div>
 
-      </section>
+        </section>
+      )}
 
       {/* responsibilities */}
 
-      <section className="project-section">
+      {project.responsibilities &&
+        project.responsibilities.length > 0 && (
+          <section className="project-section">
 
-        <p className="project-section-label">
-          05 / What I worked on
-        </p>
+            <p className="project-section-label">
+              05 / What I worked on
+            </p>
 
-        <div className="project-number-list">
+            <div className="project-number-list">
 
-          {project.responsibilities.map(
-            (item, index) => (
-              <div
-                key={item}
-                className="project-number-item"
-              >
-                <span>
-                  {index + 1}
-                </span>
+              {project.responsibilities.map(
+                (item, index) => (
+                  <div
+                    key={`${item}-${index}`}
+                    className="project-number-item"
+                  >
+                    <span>
+                      {index + 1}
+                    </span>
 
-                <p>
-                  {item}
-                </p>
-              </div>
-            )
-          )}
+                    <p>
+                      {item}
+                    </p>
+                  </div>
+                )
+              )}
 
-        </div>
+            </div>
 
-      </section>
+          </section>
+        )}
 
       {/* learnings */}
 
-      <section className="project-section project-learning-section">
+      {project.learnings && project.learnings.length > 0 && (
+        <section className="project-section project-learning-section">
 
-        <p className="project-section-label">
-          06 / What I learned
-        </p>
+          <p className="project-section-label">
+            06 / What I learned
+          </p>
 
-        <h2>
-          Building it taught me more than
-          simply finishing the feature.
-        </h2>
+          <h2>
+            Building it taught me more than
+            simply finishing the feature.
+          </h2>
 
-        <div className="project-learning-grid">
+          <div className="project-learning-grid">
 
-          {project.learnings.map(
-            (learning) => (
-              <p key={learning}>
-                {learning}
-              </p>
-            )
-          )}
+            {project.learnings.map(
+              (learning, index) => (
+                <p key={`${learning}-${index}`}>
+                  {learning}
+                </p>
+              )
+            )}
 
-        </div>
+          </div>
 
-      </section>
+        </section>
+      )}
 
       {/* links */}
 

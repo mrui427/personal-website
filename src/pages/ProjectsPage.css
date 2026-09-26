@@ -1,56 +1,103 @@
+/* =========================
+   PROJECTS PAGE
+   ========================= */
+
 .projects-page {
   width: min(1180px, calc(100% - 48px));
+
   margin: 0 auto;
-  padding: 110px 0 120px;
+
   color: #181818;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+   与 NotesPage 保持一致
+   ========================= */
 
 .projects-hero {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(220px, 340px);
+
+  align-items: center;
+
+  gap: 64px;
+
+  min-height: 360px;
+
+  padding: 80px 0 50px;
+
+  margin-bottom: 60px;
+
+  border-bottom: 1px solid #dedbd6;
+}
+
+.projects-hero-copy {
   max-width: 760px;
-  margin-bottom: 110px;
 }
 
-.projects-hero-label {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: #777;
-  margin-bottom: 28px;
-}
-
-.projects-hero h1 {
+.projects-hero-copy p {
   margin: 0;
-  font-size: clamp(54px, 7vw, 96px);
-  line-height: 0.95;
-  font-weight: 500;
-  letter-spacing: -0.055em;
-}
 
-.projects-hero p {
-  margin-top: 38px;
-  max-width: 620px;
+  color: #6d6863;
 
   font-size: 18px;
+
   line-height: 1.7;
-  color: #666;
+
+  font-weight: 500;
 }
 
-/* LIST */
+.projects-hero-art {
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+}
+
+.projects-hero-art img {
+  display: block;
+
+  width: min(100%, 300px);
+
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+/* =========================
+   PROJECT LIST
+   ========================= */
 
 .projects-list {
   border-top: 1px solid #dcdcdc;
 }
 
+
+/* =========================
+   PROJECT ROW
+   ========================= */
+
 .project-row {
   display: grid;
-  grid-template-columns: 60px 310px 1fr;
+
+  grid-template-columns:
+    60px
+    310px
+    1fr;
+
   gap: 32px;
 
   padding: 46px 0;
 
   text-decoration: none;
+
   color: inherit;
 
   border-bottom: 1px solid #dcdcdc;
@@ -64,38 +111,57 @@
   transform: translateY(-2px);
 }
 
+
+/* =========================
+   INDEX
+   ========================= */
+
 .project-index {
-  font-size: 12px;
-  color: #999;
   padding-top: 4px;
+
+  color: #999;
+
+  font-size: 12px;
 }
 
-/* VISUAL */
+
+/* =========================
+   PROJECT VISUAL
+   ========================= */
 
 .project-visual {
   height: 210px;
-  border-radius: 22px;
 
   padding: 24px;
 
+  border-radius: 22px;
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: space-between;
 
   color: #111;
 
-  transition: transform 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    border-radius 0.25s ease;
 }
 
 .project-row:hover .project-visual {
   transform: rotate(-1deg);
+
+  border-radius: 19px;
 }
 
 .project-visual-title {
   max-width: 170px;
 
   font-size: 26px;
+
   font-weight: 500;
+
   line-height: 1.05;
 
   letter-spacing: -0.03em;
@@ -103,22 +169,39 @@
 
 .project-visual-arrow {
   align-self: flex-end;
+
   font-size: 28px;
+
+  transition: transform 0.2s ease;
 }
 
-/* CONTENT */
+.project-row:hover .project-visual-arrow {
+  transform: translate(3px, -3px);
+}
+
+
+/* =========================
+   PROJECT CONTENT
+   ========================= */
 
 .project-row-content {
   display: flex;
+
   flex-direction: column;
+
   justify-content: space-between;
 }
 
 .project-row-top {
   display: flex;
+
   justify-content: space-between;
+
   gap: 30px;
 }
+
+
+/* CATEGORY */
 
 .project-category {
   margin: 0 0 10px;
@@ -126,38 +209,63 @@
   color: #888;
 
   text-transform: uppercase;
+
   letter-spacing: 0.1em;
+
   font-size: 11px;
 }
+
+
+/* TITLE */
 
 .project-row h2 {
   margin: 0;
 
   font-size: 34px;
+
   font-weight: 500;
 
   letter-spacing: -0.035em;
+
+  line-height: 1.05;
 }
+
+
+/* YEAR */
 
 .project-year {
   color: #777;
+
   font-size: 13px;
+
+  white-space: nowrap;
 }
+
+
+/* DESCRIPTION */
 
 .project-description {
   max-width: 610px;
 
   margin: 25px 0;
 
-  line-height: 1.65;
   color: #666;
 
   font-size: 15px;
+
+  line-height: 1.65;
 }
+
+
+/* =========================
+   STACK
+   ========================= */
 
 .project-stack {
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 8px;
 }
 
@@ -165,28 +273,64 @@
   padding: 7px 12px;
 
   border: 1px solid #d8d8d8;
+
   border-radius: 999px;
+
+  color: #555;
 
   font-size: 11px;
 
-  color: #555;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 
-/* MOBILE */
+.project-stack span:hover {
+  background: rgba(255, 255, 255, 0.55);
+
+  border-color: #bfbfbf;
+}
+
+
+/* =========================
+   TABLET
+   ========================= */
 
 @media (max-width: 900px) {
   .projects-page {
     width: min(100% - 32px, 760px);
-    padding-top: 80px;
   }
 
   .projects-hero {
-    margin-bottom: 70px;
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+
+    min-height: auto;
+
+    padding: 56px 0 40px;
+
+    margin-bottom: 50px;
+  }
+
+  .projects-hero-art {
+    justify-content: flex-start;
+  }
+
+  .projects-hero-art img {
+    width: min(100%, 220px);
+  }
+
+  .projects-hero-copy p {
+    font-size: 16px;
   }
 
   .project-row {
     grid-template-columns: 1fr;
+
     gap: 20px;
+
+    padding: 36px 0;
   }
 
   .project-index {
@@ -197,7 +341,94 @@
     height: 240px;
   }
 
+  .project-row-top {
+    gap: 18px;
+  }
+
   .project-row h2 {
     font-size: 30px;
+  }
+
+  .project-description {
+    margin: 18px 0;
+  }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+  .projects-page {
+    width: min(100% - 28px, 560px);
+  }
+
+  .projects-hero {
+    gap: 22px;
+
+    padding: 48px 0 34px;
+
+    margin-bottom: 42px;
+  }
+
+  .projects-hero-copy p {
+    font-size: 15px;
+
+    line-height: 1.65;
+  }
+
+  .projects-hero-art img {
+    width: min(100%, 190px);
+  }
+
+  .project-row {
+    padding: 30px 0;
+  }
+
+  .project-visual {
+    height: 210px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+  }
+
+  .project-visual-title {
+    font-size: 23px;
+  }
+
+  .project-visual-arrow {
+    font-size: 24px;
+  }
+
+  .project-row-top {
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .project-row h2 {
+    font-size: 28px;
+  }
+
+  .project-year {
+    font-size: 11px;
+  }
+
+  .project-description {
+    margin: 16px 0;
+
+    font-size: 14px;
+  }
+
+  .project-stack {
+    gap: 6px;
+  }
+
+  .project-stack span {
+    padding: 6px 10px;
+
+    font-size: 10px;
   }
 }

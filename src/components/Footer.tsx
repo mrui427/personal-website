@@ -12,9 +12,6 @@ function Footer() {
         <div className="footer-top">
 
           <div>
-            <p className="footer-label">
-              Mingrui Zhang
-            </p>
 
             <h2>
               Building things,

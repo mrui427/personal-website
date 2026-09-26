@@ -20,7 +20,7 @@ function Navbar() {
           to="/"
           className="navbar-brand"
         >
-          Mingrui.
+          Morri.
         </Link>
 
         <nav className="navbar-links">
@@ -40,12 +40,6 @@ function Navbar() {
             Projects
           </NavLink>
 
-          <NavLink
-            to="/learning"
-            className={getNavClass}
-          >
-            Learning
-          </NavLink>
 
           <NavLink
             to="/notes"
