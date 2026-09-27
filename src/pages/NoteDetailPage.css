@@ -194,3 +194,186 @@
     font-size: 16px;
   }
 }
+
+/* =========================
+   PORTABLE TEXT
+   ========================= */
+
+.note-content-paragraph {
+  max-width: 720px;
+
+  margin: 0 0 28px;
+
+  color: #444;
+
+  font-size: 18px;
+
+  line-height: 1.85;
+}
+
+.note-content-h1,
+.note-content-h2,
+.note-content-h3 {
+  margin: 54px 0 20px;
+
+  color: #181818;
+
+  font-weight: 600;
+
+  letter-spacing: -0.035em;
+}
+
+.note-content-h1 {
+  font-size: 38px;
+}
+
+.note-content-h2 {
+  font-size: 30px;
+}
+
+.note-content-h3 {
+  font-size: 24px;
+}
+
+.note-list {
+  max-width: 720px;
+
+  margin: 0 0 30px;
+
+  padding-left: 28px;
+
+  color: #444;
+
+  font-size: 18px;
+
+  line-height: 1.8;
+}
+
+.note-list li {
+  margin-bottom: 8px;
+}
+
+.note-blockquote {
+  max-width: 720px;
+
+  margin: 40px 0;
+
+  padding: 10px 0 10px 24px;
+
+  border-left: 2px solid #aaa;
+
+  color: #666;
+
+  font-size: 20px;
+
+  line-height: 1.6;
+}
+
+.note-inline-code {
+  padding: 2px 6px;
+
+  border-radius: 6px;
+
+  background: #efefeb;
+
+  font-family: monospace;
+
+  font-size: 0.9em;
+}
+
+.note-content-link {
+  color: #181818;
+
+  text-decoration: underline;
+
+  text-underline-offset: 3px;
+}
+
+
+/* =========================
+   TABLE
+   ========================= */
+
+.note-table-wrapper {
+  width: 100%;
+
+  margin: 42px 0;
+
+  overflow-x: auto;
+
+  border: 1px solid #dedbd6;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.note-table {
+  width: 100%;
+
+  min-width: 560px;
+
+  border-collapse: collapse;
+
+  font-size: 15px;
+}
+
+.note-table th,
+.note-table td {
+  padding: 16px 18px;
+
+  text-align: left;
+
+  vertical-align: top;
+
+  border-bottom: 1px solid #dedbd6;
+}
+
+.note-table th {
+  background: rgba(0, 0, 0, 0.035);
+
+  color: #333;
+
+  font-weight: 600;
+}
+
+.note-table td {
+  color: #5f5a55;
+
+  line-height: 1.6;
+}
+
+.note-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .note-content-paragraph,
+  .note-list {
+    font-size: 16px;
+  }
+
+  .note-content-h1 {
+    font-size: 32px;
+  }
+
+  .note-content-h2 {
+    font-size: 26px;
+  }
+
+  .note-content-h3 {
+    font-size: 21px;
+  }
+
+  .note-table {
+    font-size: 13px;
+  }
+
+  .note-table th,
+  .note-table td {
+    padding: 13px 14px;
+  }
+}
