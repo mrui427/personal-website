@@ -1,0 +1,58 @@
+.static-project-page h2,
+.static-project-page h3 {
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.static-project-page .project-large-copy {
+  margin: 0;
+}
+
+.static-project-copy {
+  max-width: 760px;
+  margin: 36px 0 0;
+  color: #555;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.static-project-page .project-feature-card h3 {
+  margin: 30px 0 0;
+  font-size: 26px;
+}
+
+.static-project-page .project-feature-card p {
+  margin-top: 16px;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.static-project-section-title {
+  max-width: 800px;
+  margin: 0 0 50px;
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.15;
+}
+
+.static-project-page .project-learning-grid h3 {
+  margin: 0 0 18px;
+  font-size: 22px;
+}
+
+.static-project-contributions {
+  margin: 0;
+  padding-left: 28px;
+}
+
+.static-project-contributions li {
+  padding: 24px 0 24px 14px;
+  border-top: 1px solid #ddd;
+  font-size: clamp(18px, 2vw, 21px);
+  line-height: 1.5;
+}
+
+.static-project-contributions li::marker {
+  color: #999;
+  font-size: 13px;
+}

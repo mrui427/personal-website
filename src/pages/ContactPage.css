@@ -2,7 +2,7 @@
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
 
-  padding: 110px 0 130px;
+  padding: 48px 0 100px;
 
   color: #181818;
 }
@@ -10,14 +10,14 @@
 /* HERO */
 
 .contact-hero {
-  min-height: 610px;
+  min-height: 420px;
 
   display: flex;
   flex-direction: column;
 
   justify-content: center;
 
-  padding-bottom: 100px;
+  padding-bottom: 64px;
 }
 
 .contact-eyebrow {
@@ -35,25 +35,25 @@
 .contact-hero h1 {
   margin: 0;
 
-  max-width: 980px;
+  max-width: 740px;
 
-  font-size: clamp(64px, 9vw, 126px);
+  font-size: clamp(36px, 5vw, 64px);
 
-  line-height: 0.88;
+  line-height: 1.12;
 
   font-weight: 500;
 
-  letter-spacing: -0.07em;
+  letter-spacing: -0.04em;
 }
 
 .contact-intro {
   max-width: 620px;
 
-  margin: 42px 0 0;
+  margin: 28px 0 0;
 
   color: #626262;
 
-  font-size: 18px;
+  font-size: 15px;
 
   line-height: 1.75;
 }
@@ -67,13 +67,13 @@
 .contact-row {
   display: grid;
 
-  grid-template-columns: 140px 1fr 50px;
+  grid-template-columns: 110px minmax(0, 1fr) 32px;
 
-  gap: 30px;
+  gap: 24px;
 
   align-items: center;
 
-  padding: 34px 0;
+  padding: 26px 0;
 
   border-bottom: 1px solid #ddd;
 
@@ -87,7 +87,7 @@
 }
 
 .contact-row:hover {
-  transform: translateX(6px);
+  transform: translateX(3px);
 }
 
 .contact-row-label {
@@ -101,15 +101,15 @@
 }
 
 .contact-row-value {
-  font-size: clamp(26px, 4vw, 48px);
+  font-size: clamp(18px, 2.3vw, 26px);
 
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
 }
 
 .contact-row-arrow {
   text-align: right;
 
-  font-size: 25px;
+  font-size: 20px;
 }
 
 /* META */
@@ -121,7 +121,7 @@
 
   gap: 50px;
 
-  padding: 110px 0;
+  padding: 72px 0;
 
   border-bottom: 1px solid #ddd;
 }
@@ -145,7 +145,7 @@
 
   color: #4f4f4f;
 
-  font-size: 16px;
+  font-size: 15px;
 
   line-height: 1.7;
 }
@@ -153,7 +153,7 @@
 /* ENDING */
 
 .contact-ending {
-  padding: 140px 0 30px;
+  padding: 48px 0 24px;
 }
 
 .contact-ending p {
@@ -169,13 +169,13 @@
 
   max-width: 900px;
 
-  font-size: clamp(50px, 7vw, 92px);
+  font-size: clamp(28px, 3.8vw, 48px);
 
   font-weight: 500;
 
-  line-height: 0.96;
+  line-height: 1.2;
 
-  letter-spacing: -0.055em;
+  letter-spacing: -0.03em;
 }
 
 /* MOBILE */
@@ -184,17 +184,17 @@
   .contact-page {
     width: min(100% - 32px, 700px);
 
-    padding-top: 80px;
+    padding-top: 56px;
   }
 
   .contact-hero {
     min-height: auto;
 
-    padding-bottom: 80px;
+    padding-bottom: 48px;
   }
 
   .contact-row {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
 
     gap: 12px;
   }
@@ -206,8 +206,43 @@
   .contact-meta-section {
     grid-template-columns: 1fr;
 
-    gap: 45px;
+    gap: 28px;
 
-    padding: 80px 0;
+    padding: 48px 0;
   }
+}
+.contact-page {
+  -webkit-font-smoothing: antialiased;
+}
+
+.contact-hero h1,
+.contact-ending h2 {
+  text-wrap: balance;
+}
+
+.contact-row-value {
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+.contact-row:focus-visible {
+  outline: 2px solid #777;
+  outline-offset: 6px;
+  border-radius: 6px;
+}
+
+html[lang='zh-CN'] .contact-hero h1 {
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+html[lang='zh-CN'] .contact-ending h2 {
+  font-size: clamp(26px, 3.3vw, 42px);
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+html[lang='zh-CN'] .contact-row-value {
+  letter-spacing: 0;
 }

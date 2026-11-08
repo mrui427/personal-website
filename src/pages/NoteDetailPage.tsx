@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react'
+import { localizeContent } from '../i18n/content'
+import { Trans } from '../i18n/Language'
+import { useLanguage } from '../i18n/context'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import {
@@ -7,6 +10,7 @@ import {
 } from '@portabletext/react'
 
 import { sanityClient } from '../lib/sanity'
+const DatabaseRoadmap = lazy(() => import('../components/DatabaseRoadmap'))
 
 import './NoteDetailPage.css'
 
@@ -25,6 +29,7 @@ type TableBlock = {
 
 type Note = {
   _id: string
+  slug?: string
   title: string
   category?: string
   createdAt?: string
@@ -193,14 +198,17 @@ const portableTextComponents: PortableTextComponents = {
    ========================================================= */
 
 function NoteDetailPage() {
+  const { language, t } = useLanguage()
   const { slug } = useParams()
 
-  const [note, setNote] =
+  const [noteData, setNote] =
     useState<Note | null>(null)
 
   const [loading, setLoading] =
     useState(true)
 
+
+  const note = localizeContent(noteData, language)
 
   useEffect(() => {
     if (!slug) {
@@ -214,9 +222,11 @@ function NoteDetailPage() {
         `
           *[
             _type == "note" &&
-            _id == $slug
+            (_id == $slug || slug.current == $slug)
           ][0] {
             _id,
+            "slug": slug.current,
+            translations,
             title,
             category,
             createdAt,
@@ -255,9 +265,7 @@ function NoteDetailPage() {
     return (
       <main className="note-detail-page">
 
-        <div className="note-detail-message">
-          Loading note...
-        </div>
+        <div className="note-detail-message"><Trans text="Loading note..." /></div>
 
       </main>
     )
@@ -274,13 +282,9 @@ function NoteDetailPage() {
 
         <div className="note-detail-message">
 
-          <p>
-            Note not found.
-          </p>
+          <p><Trans text="Note not found." /></p>
 
-          <Link to="/notes">
-            ← Back to notes
-          </Link>
+          <Link to="/notes"><Trans text="← Back to notes" /></Link>
 
         </div>
 
@@ -297,9 +301,7 @@ function NoteDetailPage() {
       <Link
         to="/notes"
         className="note-back"
-      >
-        ← Notes
-      </Link>
+      ><Trans text="← Notes" /></Link>
 
 
       <article className="note-article">
@@ -310,13 +312,13 @@ function NoteDetailPage() {
 
           {note.category && (
             <p className="note-detail-category">
-              {note.category}
+              <Trans text={note.category} />
             </p>
           )}
 
 
           <h1>
-            {note.title}
+            <Trans text={note.title} />
           </h1>
 
 
@@ -327,7 +329,7 @@ function NoteDetailPage() {
                 {new Date(
                   note.createdAt
                 ).toLocaleDateString(
-                  'en-AU',
+                  language === 'zh' ? 'zh-CN' : 'en-AU',
                   {
                     day: 'numeric',
                     month: 'short',
@@ -342,7 +344,7 @@ function NoteDetailPage() {
               note.tags.length > 0 && (
 
                 <span>
-                  {note.tags.join(' · ')}
+                  {note.tags.map(t).join(' · ')}
                 </span>
 
               )}
@@ -358,7 +360,7 @@ function NoteDetailPage() {
           <section className="note-intro">
 
             <p>
-              {note.excerpt}
+              <Trans text={note.excerpt} />
             </p>
 
           </section>
@@ -384,6 +386,12 @@ function NoteDetailPage() {
           )}
 
 
+        {note.slug === 'database' && (
+          <Suspense fallback={<p><Trans text="Loading note..." /></p>}>
+            <DatabaseRoadmap />
+          </Suspense>
+        )}
+
         {/* TAGS */}
 
         {note.tags &&
@@ -394,7 +402,7 @@ function NoteDetailPage() {
               {note.tags.map((tag) => (
 
                 <span key={tag}>
-                  {tag}
+                  <Trans text={tag} />
                 </span>
 
               ))}
@@ -410,14 +418,10 @@ function NoteDetailPage() {
 
       <footer className="note-detail-footer">
 
-        <p>
-          End of note.
-        </p>
+        <p><Trans text="End of note." /></p>
 
 
-        <Link to="/notes">
-          More notes →
-        </Link>
+        <Link to="/notes"><Trans text="More notes →" /></Link>
 
       </footer>
 

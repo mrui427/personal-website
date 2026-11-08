@@ -1,0 +1,42 @@
+.tech-modules { margin-bottom: 64px; }
+.tech-modules-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 28px; }
+.tech-modules-heading h2 { margin: 0; font-size: clamp(24px, 3vw, 32px); font-weight: 500; }
+.tech-modules-heading > span, .tech-result-count { color: #888; font-size: 12px; }
+.tech-search-label, .tech-note-search label { display: block; margin-bottom: 12px; font-size: 13px; }
+.tech-search-control { display: flex; gap: 10px; }
+.tech-search-control input { width: 100%; min-width: 0; padding: 14px 16px; border: 1px solid #ddd8d2; border-radius: 12px; background: #faf9f6; color: #181818; font: inherit; font-size: 14px; }
+.tech-search-control button { border: 1px solid #ddd8d2; border-radius: 12px; padding: 10px 16px; background: #edeae4; font: inherit; font-size: 13px; cursor: pointer; }
+.tech-module-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.tech-module-card { padding: 24px; border: 1px solid #ddd8d2; border-radius: 18px; color: #181818; text-decoration: none; transition: background 160ms ease; }
+.tech-module-card:hover { background: #edeae4; }
+.tech-module-card > span, .tech-module-card small { color: #888; font-size: 11px; }
+.tech-module-card h3 { display: flex; justify-content: space-between; gap: 12px; margin: 24px 0 14px; font-size: 22px; font-weight: 500; }
+.tech-module-card h3 span { color: #888; font-size: 16px; }
+.tech-module-card p { margin: 0 0 24px; color: #666; font-size: 14px; line-height: 1.7; }
+.tech-note-page { width: min(900px, calc(100% - 48px)); margin: 0 auto; padding: 80px 0 110px; }
+.tech-back { color: #777; font-size: 13px; text-decoration: none; }
+.tech-note-heading { margin: 56px 0 40px; }
+.tech-note-heading > p:first-child { font-size: 12px; color: #888; }
+.tech-note-heading h1 { margin: 16px 0 24px; font-size: clamp(36px, 5vw, 60px); line-height: 1.2; letter-spacing: -0.03em; font-weight: 500; }
+.tech-note-intro { font-size: 17px; color: #666; line-height: 1.8; }
+.tech-note-search p, .tech-example-note { color: #888; font-size: 12px; line-height: 1.8; }
+.tech-example-note { margin: 28px 0; }
+.tech-lesson { border-top: 1px solid #ddd8d2; }
+.tech-lesson summary { display: flex; justify-content: space-between; gap: 16px; padding: 24px 0; list-style: none; cursor: pointer; font-size: 20px; }
+.tech-lesson summary::-webkit-details-marker { display: none; }
+.tech-lesson summary > span { font-size: 24px; color: #888; }
+.tech-lesson[open] summary > span { font-size: 0; }
+.tech-lesson[open] summary > span::after { content: '−'; font-size: 24px; }
+.tech-lesson-body { padding-bottom: 28px; }
+.tech-lesson-body h2 { margin: 20px 0 12px; font-size: 14px; font-weight: 600; }
+.tech-lesson-body p { font-size: 16px; color: #555; line-height: 1.85; }
+.tech-lesson-body pre { margin: 20px 0; padding: 20px; border-radius: 14px; background: #edeae4; overflow-x: auto; font-size: 13px; line-height: 1.75; }
+.tech-lesson-body code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.tech-lesson-body .tech-practice { padding: 16px 20px; border-radius: 12px; background: #e9efe7; color: #3d603b; font-size: 14px; }
+.tech-related { display: block; padding: 24px 0; color: #555; line-height: 1.7; }
+.tech-note-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; border-top: 1px solid #ddd8d2; margin-top: 32px; padding-top: 24px; }
+.tech-note-footer a { color: #777; font-size: 13px; text-underline-offset: 4px; }
+.tech-empty { color: #777; padding: 24px 0; }
+.tech-modules :focus-visible, .tech-note-page :focus-visible { outline: 2px solid #777; outline-offset: 4px; }
+@media (max-width: 850px) { .tech-module-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .tech-module-grid { grid-template-columns: 1fr; } .tech-note-page { width: calc(100% - 32px); padding-top: 56px; } }

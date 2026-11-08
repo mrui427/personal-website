@@ -1,9 +1,14 @@
+import { techSkills } from '../data/techSkills'
+import { localizeContent } from '../i18n/content'
+import { Trans } from '../i18n/Language'
+import { useLanguage } from '../i18n/context'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import heroDog from '../assets/dog/c815d4ae-b98d-4d10-a167-c2b2da33c912.png'
 
 import { getProjects } from '../lib/projectQueries'
+import { urlFor, type ProjectCoverImage } from '../lib/image'
 
 import './HomePage.css'
 
@@ -20,6 +25,7 @@ type Project = {
   shortDescription?: string
   stack?: string[]
   accent?: string
+  coverImage?: ProjectCoverImage
 }
 
 
@@ -43,13 +49,16 @@ function getProjectIcon(slug: string) {
    ========================================================= */
 
 function HomePage() {
-  const [featuredProjects, setFeaturedProjects] = useState<Project[]>([])
+  const { language } = useLanguage()
+  const [featuredProjectsData, setFeaturedProjects] = useState<Project[]>([])
   const [projectsLoading, setProjectsLoading] = useState(true)
 
 
   /* =========================================================
      LOAD PROJECTS FROM SANITY
      ========================================================= */
+
+  const featuredProjects = featuredProjectsData.map((entry) => localizeContent(entry, language))
 
   useEffect(() => {
     getProjects()
@@ -91,25 +100,16 @@ function HomePage() {
 
         <div className="hero-copy">
 
-          <p className="hero-eyebrow">
-            BUILD · LEARN · SHARE
-          </p>
+          <p className="hero-eyebrow"><Trans text="BUILD · LEARN · SHARE" /></p>
 
 
-          <h1>
-            Hi, I&apos;m Morri.
-          </h1>
+          <h1><Trans text="Hi, I'm Morri." /></h1>
 
 
-          <p className="hero-role">
-            AI software engineer | Full-stack developer | Lifelong learner
-          </p>
+          <p className="hero-role"><Trans text="AI software engineer | Full-stack developer | Lifelong learner" /></p>
 
 
-          <p className="hero-description">
-            I build practical AI-enabled web applications
-            and document my learning journey along the way. ♡
-          </p>
+          <p className="hero-description"><Trans text="I build practical AI-enabled web applications and document my learning journey along the way. ♡" /></p>
 
 
           <div className="hero-actions">
@@ -117,17 +117,13 @@ function HomePage() {
             <Link
               to="/projects"
               className="hero-button hero-button-primary"
-            >
-              View Projects
-            </Link>
+            ><Trans text="View Projects" /></Link>
 
 
             <Link
               to="/notes"
               className="hero-button hero-button-secondary"
-            >
-              Learning Notes
-            </Link>
+            ><Trans text="Learning Notes" /></Link>
 
           </div>
 
@@ -151,15 +147,9 @@ function HomePage() {
 
           <div className="section-heading-copy">
 
-            <h2>
-              Selected Projects
-            </h2>
+            <h2><Trans text="Selected Projects" /></h2>
 
-            <p>
-              Some things I&apos;ve built,
-              with a focus on real-world problems
-              and practical solutions.
-            </p>
+            <p><Trans text="Some things I've built, with a focus on real-world problems and practical solutions." /></p>
 
           </div>
 
@@ -167,24 +157,18 @@ function HomePage() {
           <Link
             className="section-link"
             to="/projects"
-          >
-            View all projects →
-          </Link>
+          ><Trans text="View all projects →" /></Link>
 
         </div>
 
 
         {projectsLoading ? (
 
-          <div className="home-project-loading">
-            Loading projects...
-          </div>
+          <div className="home-project-loading"><Trans text="Loading projects..." /></div>
 
         ) : featuredProjects.length === 0 ? (
 
-          <div className="home-project-loading">
-            No projects yet.
-          </div>
+          <div className="home-project-loading"><Trans text="No projects yet." /></div>
 
         ) : (
 
@@ -200,6 +184,14 @@ function HomePage() {
 
                 <div className="project-card-top">
 
+                  {project.coverImage?.asset ? (
+                    <img
+                      className="home-project-cover"
+                      src={urlFor(project.coverImage).width(800).height(600).fit('crop').auto('format').url()}
+                      alt={`${project.title} cover`}
+                      loading="lazy"
+                    />
+                  ) : (
                   <div
                     className="project-icon-box"
                     style={{
@@ -209,6 +201,7 @@ function HomePage() {
                   >
                     {getProjectIcon(project.slug)}
                   </div>
+                  )}
 
 
                   <span className="project-arrow">
@@ -221,18 +214,18 @@ function HomePage() {
                 <div className="project-card-copy">
 
                   <p className="project-kicker">
-                    {project.category || 'Project'}
+                    <Trans text={project.category || 'Project'} />
                   </p>
 
 
                   <h3>
-                    {project.title}
+                    <Trans text={project.title} />
                   </h3>
 
 
                   {project.shortDescription && (
                     <p>
-                      {project.shortDescription}
+                      <Trans text={project.shortDescription} />
                     </p>
                   )}
 
@@ -249,7 +242,7 @@ function HomePage() {
                         .map((tech) => (
 
                           <span key={tech}>
-                            {tech}
+                            <Trans text={tech} />
                           </span>
 
                         ))}
@@ -284,15 +277,9 @@ function HomePage() {
 
           <div className="section-heading-copy">
 
-            <h2>
-              Tech Stack
-            </h2>
+            <h2><Trans text="Tech Stack" /></h2>
 
-            <p>
-              Tools and technologies I use
-              for building full-stack and
-              AI-enabled applications.
-            </p>
+            <p><Trans text="Tools and technologies I use for building full-stack and AI-enabled applications." /></p>
 
           </div>
 
@@ -301,24 +288,11 @@ function HomePage() {
 
         <div className="tech-stack-grid">
 
-          {[
-            'React',
-            'TypeScript',
-            'JavaScript',
-            'Python',
-            'NestJS',
-            'PostgreSQL',
-            'Prisma',
-            'Git',
-            'Docker',
-            'Vite',
-            'LangChain',
-            'REST API',
-          ].map((tech, index) => (
-
-            <div
+          {techSkills.map((skill, index) => (
+            <Link
+              to={`/notes/${skill.slug}`}
               className="tech-stack-item"
-              key={tech}
+              key={skill.slug}
             >
 
               <span>
@@ -327,10 +301,10 @@ function HomePage() {
 
 
               <strong>
-                {tech}
+                <Trans text={skill.title} />
               </strong>
 
-            </div>
+            </Link>
 
           ))}
 
@@ -358,31 +332,19 @@ function HomePage() {
 
           <div className="about-preview-content">
 
-            <p className="bottom-eyebrow">
-              ABOUT ME
-            </p>
+            <p className="bottom-eyebrow"><Trans text="ABOUT ME" /></p>
 
 
-            <h2>
-              I like building things
-              <br />
-              that feel useful.
-            </h2>
+            <h2><Trans text="I like building things" /><br /><Trans text="that feel useful." /></h2>
 
 
-            <p>
-              I&apos;m interested in full-stack development,
-              AI applications,
-              and turning ideas into practical products.
-            </p>
+            <p><Trans text="I'm interested in full-stack development, AI applications, and turning ideas into practical products." /></p>
 
 
             <Link
               to="/about"
               className="bottom-link"
-            >
-              More about me →
-            </Link>
+            ><Trans text="More about me →" /></Link>
 
           </div>
 
@@ -400,31 +362,19 @@ function HomePage() {
 
           <div className="contact-preview-content">
 
-            <p className="bottom-eyebrow">
-              LET&apos;S CONNECT
-            </p>
+            <p className="bottom-eyebrow"><Trans text="LET'S CONNECT" /></p>
 
 
-            <h2>
-              Have something
-              <br />
-              interesting in mind?
-            </h2>
+            <h2><Trans text="Have something" /><br /><Trans text="interesting in mind?" /></h2>
 
 
-            <p>
-              I&apos;m always open to talking about
-              software, AI, products,
-              and interesting ideas.
-            </p>
+            <p><Trans text="I'm always open to talking about software, AI, products, and interesting ideas." /></p>
 
 
             <Link
               to="/contact"
               className="contact-button"
-            >
-              Get in touch
-            </Link>
+            ><Trans text="Get in touch" /></Link>
 
           </div>
 

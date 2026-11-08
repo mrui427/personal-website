@@ -417,6 +417,7 @@
 /* PROJECT TOP */
 
 .project-card-top {
+  position: relative;
   display: flex;
 
   justify-content: space-between;
@@ -424,6 +425,27 @@
   align-items: flex-start;
 
   margin-bottom: 54px;
+}
+
+.home-project-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.project-card-top:has(.home-project-cover) .project-arrow {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  color: #181818;
 }
 
 .project-icon-box {
@@ -1141,3 +1163,6 @@
     margin-top: 90px;
   }
 }
+
+.tech-stack-item { color: inherit; text-decoration: none; }
+.tech-stack-item:focus-visible { outline: 2px solid #777; outline-offset: 4px; }

@@ -1,3 +1,4 @@
+import { Trans } from '../i18n/Language'
 import { Link } from 'react-router-dom'
 import { learningItems } from '../data/learning'
 import './LearningPage.css'
@@ -7,20 +8,11 @@ function LearningPage() {
     <main className="learning-page">
 
       <section className="learning-hero">
-        <p className="learning-eyebrow">
-          Learning log · ongoing
-        </p>
+        <p className="learning-eyebrow"><Trans text="Learning log · ongoing" /></p>
 
-        <h1>
-          Things I'm
-          <br />
-          figuring out.
-        </h1>
+        <h1><Trans text="Things I'm" /><br /><Trans text="figuring out." /></h1>
 
-        <p className="learning-intro">
-          Notes from learning software engineering, AI,
-          algorithms and everything around building better products.
-        </p>
+        <p className="learning-intro"><Trans text="Notes from learning software engineering, AI, algorithms and everything around building better products." /></p>
       </section>
 
       <section className="learning-grid">
@@ -39,26 +31,26 @@ function LearningPage() {
               </span>
 
               <span className="learning-status">
-                {item.status}
+                <Trans text={item.status} />
               </span>
 
-              <h2>{item.title}</h2>
+              <h2><Trans text={item.title} /></h2>
             </div>
 
             <div className="learning-card-content">
 
               <p className="learning-category">
-                {item.category}
+                <Trans text={item.category} />
               </p>
 
               <p className="learning-summary">
-                {item.summary}
+                <Trans text={item.summary} />
               </p>
 
               <div className="learning-topic-list">
                 {item.topics.slice(0, 4).map((topic) => (
                   <span key={topic}>
-                    {topic}
+                    <Trans text={topic === 'Stack' ? 'Data structure stack' : topic} />
                   </span>
                 ))}
               </div>

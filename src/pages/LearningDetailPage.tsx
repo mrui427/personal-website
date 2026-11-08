@@ -1,3 +1,4 @@
+import { Trans } from '../i18n/Language'
 import { Link, useParams } from 'react-router-dom'
 import { getLearningItemBySlug } from '../data/learning'
 import './LearningDetailPage.css'
@@ -12,10 +13,8 @@ function LearningDetailPage() {
   if (!item) {
     return (
       <main className="learning-detail-page">
-        <p>Learning topic not found.</p>
-        <Link to="/learning">
-          ← Back to learning
-        </Link>
+        <p><Trans text="Learning topic not found." /></p>
+        <Link to="/learning"><Trans text="← Back to learning" /></Link>
       </main>
     )
   }
@@ -26,34 +25,32 @@ function LearningDetailPage() {
       <Link
         to="/learning"
         className="learning-back"
-      >
-        ← Learning
-      </Link>
+      ><Trans text="← Learning" /></Link>
 
       <section className="learning-detail-hero">
 
         <p className="learning-detail-category">
-          {item.category}
+          <Trans text={item.category} />
         </p>
 
         <h1>
-          {item.title}
+          <Trans text={item.title} />
         </h1>
 
         <p className="learning-detail-subtitle">
-          {item.subtitle}
+          <Trans text={item.subtitle} />
         </p>
 
         <div className="learning-detail-meta">
 
           <div>
-            <span>Status</span>
-            <p>{item.status}</p>
+            <span><Trans text="Status" /></span>
+            <p><Trans text={item.status} /></p>
           </div>
 
           <div>
-            <span>Progress</span>
-            <p>{item.progress}</p>
+            <span><Trans text="Progress" /></span>
+            <p><Trans text={item.progress} /></p>
           </div>
 
         </div>
@@ -64,34 +61,26 @@ function LearningDetailPage() {
         className="learning-detail-cover"
         style={{ backgroundColor: item.accent }}
       >
-        <span>
-          currently
-          <br />
-          learning
-        </span>
+        <span><Trans text="currently" /><br /><Trans text="learning" /></span>
 
         <h2>
-          {item.title}
+          <Trans text={item.title} />
         </h2>
       </section>
 
       <section className="learning-detail-section">
 
-        <p className="learning-section-label">
-          01 / Why I'm learning this
-        </p>
+        <p className="learning-section-label"><Trans text="01 / Why I'm learning this" /></p>
 
         <p className="learning-big-copy">
-          {item.summary}
+          <Trans text={item.summary} />
         </p>
 
       </section>
 
       <section className="learning-detail-section">
 
-        <p className="learning-section-label">
-          02 / Topics
-        </p>
+        <p className="learning-section-label"><Trans text="02 / Topics" /></p>
 
         <div className="learning-topics-grid">
 
@@ -104,7 +93,7 @@ function LearningDetailPage() {
                 {String(index + 1).padStart(2, '0')}
               </span>
 
-              <p>{topic}</p>
+              <p><Trans text={topic === 'Stack' ? 'Data structure stack' : topic} /></p>
             </div>
           ))}
 
@@ -114,9 +103,7 @@ function LearningDetailPage() {
 
       <section className="learning-detail-section">
 
-        <p className="learning-section-label">
-          03 / Notes to myself
-        </p>
+        <p className="learning-section-label"><Trans text="03 / Notes to myself" /></p>
 
         <div className="learning-notes-list">
 
@@ -126,7 +113,7 @@ function LearningDetailPage() {
               className="learning-note"
             >
               <span>→</span>
-              <p>{note}</p>
+              <p><Trans text={note} /></p>
             </div>
           ))}
 
@@ -136,13 +123,9 @@ function LearningDetailPage() {
 
       <section className="learning-detail-footer">
 
-        <p>
-          Still learning.
-        </p>
+        <p><Trans text="Still learning." /></p>
 
-        <Link to="/learning">
-          Explore another topic →
-        </Link>
+        <Link to="/learning"><Trans text="Explore another topic →" /></Link>
 
       </section>
 

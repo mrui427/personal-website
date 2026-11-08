@@ -496,3 +496,14 @@
     gap: 25px;
   }
 }
+.project-cover.project-cover-with-image {
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.project-cover-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}

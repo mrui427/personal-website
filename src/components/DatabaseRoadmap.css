@@ -1,0 +1,150 @@
+.database-roadmap {
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid #ddd8d2;
+}
+
+.database-roadmap-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.database-roadmap-heading h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 500;
+}
+
+.database-roadmap-heading > span {
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #e9efe7;
+  color: #3d603b;
+  font-size: 12px;
+}
+
+.database-roadmap-intro {
+  margin: 24px 0;
+  color: #666;
+  line-height: 1.8;
+}
+
+.database-roadmap-scroll {
+  overflow-x: auto;
+  border: 1px solid #ddd8d2;
+  border-radius: 16px;
+}
+
+.database-roadmap-scroll:focus-visible {
+  outline: 2px solid #555;
+  outline-offset: 4px;
+}
+
+.database-roadmap table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.database-roadmap caption {
+  padding: 16px;
+  text-align: left;
+  color: #777;
+  font-size: 12px;
+}
+
+.database-roadmap th,
+.database-roadmap td {
+  padding: 16px;
+  border-top: 1px solid #e4e0db;
+  vertical-align: top;
+}
+
+.database-roadmap thead th {
+  background: #edeae4;
+  white-space: nowrap;
+}
+
+.database-roadmap tbody th {
+  width: 20%;
+  font-weight: 500;
+}
+
+.database-roadmap td:nth-child(4) { width: 37%; }
+.database-roadmap td:nth-child(5) { width: 28%; }
+.database-roadmap tbody tr:nth-child(even) { background: #f3f2ee; }
+
+.database-roadmap-disclosure {
+  border: 1px solid #ddd8d2;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.database-roadmap-disclosure summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  cursor: pointer;
+  list-style: none;
+  background: #edeae4;
+  font-size: 14px;
+}
+
+.database-roadmap-disclosure summary::-webkit-details-marker { display: none; }
+.database-roadmap-disclosure summary::after { content: '+'; font-size: 22px; }
+.database-roadmap-disclosure[open] summary::after { content: '−'; }
+.database-roadmap-disclosure summary:focus-visible { outline: 2px solid #555; outline-offset: -4px; }
+.database-roadmap-disclosure .database-roadmap-scroll { border: 0; border-radius: 0; }
+.roadmap-expand, .roadmap-collapse { margin-left: auto; color: #666; font-size: 12px; }
+.roadmap-collapse { display: none; }
+.database-roadmap-disclosure[open] .roadmap-expand { display: none; }
+.database-roadmap-disclosure[open] .roadmap-collapse { display: inline; }
+.database-roadmap tbody a { color: inherit; text-underline-offset: 4px; }
+
+.database-lessons { margin-top: 48px; }
+.database-lesson { padding: 44px 0; border-top: 1px solid #ddd8d2; scroll-margin-top: 160px; }
+.database-lesson .database-lesson-number { color: #888; font-size: 12px; letter-spacing: 0.08em; }
+.database-lesson h3 { margin: 12px 0; font-size: clamp(24px, 3vw, 32px); font-weight: 500; line-height: 1.3; }
+.database-lesson h4 { margin: 28px 0 12px; font-size: 15px; font-weight: 600; }
+.database-lesson p { color: #555; line-height: 1.85; font-size: 16px; overflow-wrap: anywhere; }
+.database-lesson .database-lesson-topics { color: #888; font-size: 13px; }
+.database-lesson-code { margin: 24px 0; padding: 20px; background: #ece9e3; border-radius: 14px; min-width: 0; }
+.database-lesson-code > span { font-size: 11px; color: #777; }
+.database-lesson pre { margin: 14px 0 0; overflow-x: auto; font-size: 13px; line-height: 1.75; }
+.database-lesson code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.database-lesson .database-lesson-goal { padding: 16px 20px; background: #e9efe7; border-radius: 12px; color: #3d603b; font-size: 14px; }
+.database-lesson-reference { font-size: 12px; color: #666; text-underline-offset: 4px; }
+
+.database-search { margin: 28px 0; }
+.database-search label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 12px; }
+.database-search-input { display: flex; gap: 10px; }
+.database-search input { width: 100%; min-width: 0; padding: 14px 16px; border: 1px solid #ddd8d2; border-radius: 12px; background: #faf9f6; color: #181818; font: inherit; font-size: 14px; }
+.database-search input:focus-visible { outline: 2px solid #777; outline-offset: 2px; }
+.database-search button { flex-shrink: 0; border: 1px solid #ddd8d2; border-radius: 12px; padding: 10px 16px; background: #edeae4; color: #444; font: inherit; font-size: 13px; cursor: pointer; }
+.database-search button:focus-visible { outline: 2px solid #777; outline-offset: 2px; }
+.database-search p { color: #777; font-size: 12px; margin-top: 12px; }
+.database-search-empty { padding: 24px; border: 1px dashed #ddd8d2; border-radius: 12px; color: #666; }
+.database-lesson { padding: 0; }
+.database-lesson summary { display: flex; align-items: center; gap: 16px; padding: 20px 0; cursor: pointer; list-style: none; }
+.database-lesson summary::-webkit-details-marker { display: none; }
+.database-lesson summary:focus-visible { outline: 2px solid #777; outline-offset: 4px; border-radius: 8px; }
+.database-lesson-number { flex-shrink: 0; width: 28px; color: #888; font-size: 12px; }
+.database-lesson-summary { display: grid; gap: 6px; min-width: 0; }
+.database-lesson-title { font-size: clamp(18px, 2.5vw, 23px); font-weight: 500; }
+.database-lesson-summary .database-lesson-topics { font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.database-lesson-chevron { margin-left: auto; flex-shrink: 0; color: #888; font-size: 24px; }
+.database-lesson[open] .database-lesson-chevron { font-size: 0; }
+.database-lesson[open] .database-lesson-chevron::after { content: '−'; font-size: 24px; }
+.database-lesson-body { padding: 0 0 28px 44px; }
+@media (max-width: 560px) {
+  .database-lesson-body { padding-left: 0; }
+  .database-lesson summary { gap: 10px; }
+}

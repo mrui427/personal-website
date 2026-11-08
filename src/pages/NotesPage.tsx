@@ -1,3 +1,7 @@
+import TechNoteModules from '../components/TechNoteModules'
+import { localizeContent } from '../i18n/content'
+import { Trans } from '../i18n/Language'
+import { useLanguage } from '../i18n/context'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -20,15 +24,19 @@ type Note = {
 
 
 function NotesPage() {
-  const [notes, setNotes] = useState<Note[]>([])
+  const { language } = useLanguage()
+  const [notesData, setNotes] = useState<Note[]>([])
   const [loading, setLoading] = useState(true)
 
+
+  const notes = notesData.map((entry) => localizeContent(entry, language))
 
   useEffect(() => {
     sanityClient
       .fetch(`
         *[_type == "note"] | order(createdAt desc) {
           _id,
+          translations,
           title,
           "slug": slug.current,
           excerpt,
@@ -65,10 +73,7 @@ function NotesPage() {
 
         <div className="notes-hero-copy">
 
-          <p>
-            Small notes on coding, building, AI and things
-            I want to remember along the way.
-          </p>
+          <p><Trans text="Small notes on coding, building, AI and things I want to remember along the way." /></p>
 
         </div>
 
@@ -89,19 +94,17 @@ function NotesPage() {
           NOTES LIST
           ========================= */}
 
+      <TechNoteModules />
+
       <section className="notes-list">
 
         {loading ? (
 
-          <p className="notes-message">
-            Loading notes...
-          </p>
+          <p className="notes-message"><Trans text="Loading notes..." /></p>
 
         ) : notes.length === 0 ? (
 
-          <p className="notes-message">
-            No notes yet.
-          </p>
+          <p className="notes-message"><Trans text="No notes yet." /></p>
 
         ) : (
 
@@ -132,12 +135,12 @@ function NotesPage() {
 
                     {note.category && (
                       <p className="note-category">
-                        {note.category}
+                        <Trans text={note.category} />
                       </p>
                     )}
 
                     <h2>
-                      {note.title}
+                      <Trans text={note.title} />
                     </h2>
 
                   </div>
@@ -150,7 +153,7 @@ function NotesPage() {
                       {new Date(
                         note.createdAt
                       ).toLocaleDateString(
-                        'en-AU',
+                        language === 'zh' ? 'zh-CN' : 'en-AU',
                         {
                           day: 'numeric',
                           month: 'short',
@@ -168,7 +171,7 @@ function NotesPage() {
                 {note.excerpt && (
 
                   <p className="note-excerpt">
-                    {note.excerpt}
+                    <Trans text={note.excerpt} />
                   </p>
 
                 )}
@@ -182,7 +185,7 @@ function NotesPage() {
                       {note.tags.map((tag) => (
 
                         <span key={tag}>
-                          {tag}
+                          <Trans text={tag} />
                         </span>
 
                       ))}

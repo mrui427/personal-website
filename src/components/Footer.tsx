@@ -1,3 +1,4 @@
+import { Trans } from '../i18n/Language'
 import { Link } from 'react-router-dom'
 import './Footer.css'
 
@@ -13,34 +14,20 @@ function Footer() {
 
           <div>
 
-            <h2>
-              Building things,
-              <br />
-              learning along the way.
-            </h2>
+            <h2><Trans text="Building things," /><br /><Trans text="learning along the way." /></h2>
           </div>
 
           <div className="footer-links">
 
-            <Link to="/projects">
-              Projects
-            </Link>
+            <Link to="/projects"><Trans text="Projects" /></Link>
 
-            <Link to="/learning">
-              Learning
-            </Link>
+            <Link to="/learning"><Trans text="Learning" /></Link>
 
-            <Link to="/notes">
-              Notes
-            </Link>
+            <Link to="/notes"><Trans text="Notes" /></Link>
 
-            <Link to="/about">
-              About
-            </Link>
+            <Link to="/about"><Trans text="About" /></Link>
 
-            <Link to="/contact">
-              Contact
-            </Link>
+            <Link to="/contact"><Trans text="Contact" /></Link>
 
           </div>
 
@@ -49,12 +36,9 @@ function Footer() {
         <div className="footer-bottom">
 
           <span>
-            © {year} Mingrui Zhang
-          </span>
+            © {year}<Trans text=" Mingrui Zhang" /></span>
 
-          <span>
-            Sydney, Australia
-          </span>
+          <span><Trans text="Sydney, Australia" /></span>
 
         </div>
 

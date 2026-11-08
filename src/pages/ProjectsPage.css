@@ -130,6 +130,8 @@
    ========================= */
 
 .project-visual {
+  position: relative;
+  overflow: hidden;
   height: 210px;
 
   padding: 24px;
@@ -168,6 +170,8 @@
 }
 
 .project-visual-arrow {
+  position: relative;
+  z-index: 1;
   align-self: flex-end;
 
   font-size: 28px;
@@ -431,4 +435,11 @@
 
     font-size: 10px;
   }
+}
+.project-visual-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

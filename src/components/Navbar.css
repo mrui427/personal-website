@@ -155,3 +155,39 @@
     flex-shrink: 0;
   }
 }
+.language-switch {
+  display: flex;
+  flex-shrink: 0;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid #ddd8d2;
+  border-radius: 999px;
+  margin-left: 12px;
+}
+
+.language-switch button {
+  border: 0;
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: transparent;
+  color: #777;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.language-switch button[aria-pressed='true'] {
+  background: #181818;
+  color: #fff;
+}
+
+.language-switch button:focus-visible {
+  outline: 2px solid #555;
+  outline-offset: 3px;
+}
+
+@media (max-width: 560px) {
+  .navbar-inner { flex-wrap: wrap; height: auto; min-height: 66px; padding: 12px 0; gap: 12px; }
+  .navbar-links { order: 3; width: 100%; max-width: 100%; justify-content: center; }
+  .language-switch { margin-left: auto; }
+}

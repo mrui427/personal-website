@@ -78,3 +78,13 @@ img {
     --page-padding: 16px;
   }
 }
+html[lang='zh-CN'] body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+html[lang='zh-CN'] h1,
+html[lang='zh-CN'] h2,
+html[lang='zh-CN'] h3 {
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}

@@ -1,7 +1,12 @@
+import { localizeContent } from '../i18n/content'
+import { Trans } from '../i18n/Language'
+import { useLanguage } from '../i18n/context'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import { getProjectBySlug } from '../lib/projectQueries'
+
+import { urlFor, type ProjectCoverImage } from '../lib/image'
 
 import './ProjectDetailPage.css'
 
@@ -23,13 +28,17 @@ type Project = {
   accent?: string
   github?: string
   demo?: string
+  coverImage?: ProjectCoverImage
 }
 
 function ProjectDetailPage() {
+  const { language } = useLanguage()
   const { slug } = useParams()
 
-  const [project, setProject] = useState<Project | null>(null)
+  const [projectData, setProject] = useState<Project | null>(null)
   const [loading, setLoading] = useState(true)
+
+  const project = localizeContent(projectData, language)
 
   useEffect(() => {
     if (!slug) {
@@ -54,7 +63,7 @@ function ProjectDetailPage() {
     return (
       <main className="project-detail-page">
         <div className="project-not-found">
-          <p>Loading project...</p>
+          <p><Trans text="Loading project..." /></p>
         </div>
       </main>
     )
@@ -64,11 +73,9 @@ function ProjectDetailPage() {
     return (
       <main className="project-detail-page">
         <div className="project-not-found">
-          <p>Project not found.</p>
+          <p><Trans text="Project not found." /></p>
 
-          <Link to="/projects">
-            ← Back to projects
-          </Link>
+          <Link to="/projects"><Trans text="← Back to projects" /></Link>
         </div>
       </main>
     )
@@ -82,9 +89,7 @@ function ProjectDetailPage() {
       <Link
         to="/projects"
         className="project-back"
-      >
-        ← All projects
-      </Link>
+      ><Trans text="← All projects" /></Link>
 
       {/* HERO */}
 
@@ -93,7 +98,7 @@ function ProjectDetailPage() {
         <div className="project-detail-heading">
 
           <p className="project-detail-category">
-            {project.category || 'Project'}
+            <Trans text={project.category || 'Project'} />
 
             {project.year && (
               <>
@@ -104,12 +109,12 @@ function ProjectDetailPage() {
           </p>
 
           <h1>
-            {project.title}
+            <Trans text={project.title} />
           </h1>
 
           {project.subtitle && (
             <p className="project-detail-subtitle">
-              {project.subtitle}
+              <Trans text={project.subtitle} />
             </p>
           )}
 
@@ -119,21 +124,21 @@ function ProjectDetailPage() {
 
           {project.role && (
             <div>
-              <span>Role</span>
-              <p>{project.role}</p>
+              <span><Trans text="Role" /></span>
+              <p><Trans text={project.role} /></p>
             </div>
           )}
 
           {project.year && (
             <div>
-              <span>Year</span>
+              <span><Trans text="Year" /></span>
               <p>{project.year}</p>
             </div>
           )}
 
           {project.stack && project.stack.length > 0 && (
             <div>
-              <span>Stack</span>
+              <span><Trans text="Stack" /></span>
 
               <p>
                 {project.stack.join(', ')}
@@ -148,16 +153,23 @@ function ProjectDetailPage() {
       {/* visual */}
 
       <section
-        className="project-cover"
+        className={`project-cover${project.coverImage?.asset ? ' project-cover-with-image' : ''}`}
         style={{
           backgroundColor:
             project.accent || '#e8e8e8',
         }}
       >
+        {project.coverImage?.asset ? (
+          <img
+            className="project-cover-image"
+            src={urlFor(project.coverImage).width(1600).auto('format').url()}
+            alt={`${project.title} cover`}
+          />
+        ) : (
         <div className="project-cover-inner">
 
           <span>
-            {project.title}
+            <Trans text={project.title} />
           </span>
 
           <div className="project-cover-doodle">
@@ -166,11 +178,12 @@ function ProjectDetailPage() {
 
           {project.subtitle && (
             <p>
-              {project.subtitle}
+              <Trans text={project.subtitle} />
             </p>
           )}
 
         </div>
+        )}
       </section>
 
       {/* overview */}
@@ -178,12 +191,10 @@ function ProjectDetailPage() {
       {project.overview && (
         <section className="project-section project-intro-section">
 
-          <p className="project-section-label">
-            01 / Overview
-          </p>
+          <p className="project-section-label"><Trans text="01 / Overview" /></p>
 
           <div className="project-large-copy">
-            {project.overview}
+            <Trans text={project.overview} />
           </div>
 
         </section>
@@ -197,12 +208,10 @@ function ProjectDetailPage() {
           {project.problem && (
             <div className="project-info-block">
 
-              <p className="project-section-label">
-                02 / The problem
-              </p>
+              <p className="project-section-label"><Trans text="02 / The problem" /></p>
 
               <p>
-                {project.problem}
+                <Trans text={project.problem} />
               </p>
 
             </div>
@@ -211,12 +220,10 @@ function ProjectDetailPage() {
           {project.solution && (
             <div className="project-info-block">
 
-              <p className="project-section-label">
-                03 / The approach
-              </p>
+              <p className="project-section-label"><Trans text="03 / The approach" /></p>
 
               <p>
-                {project.solution}
+                <Trans text={project.solution} />
               </p>
 
             </div>
@@ -230,9 +237,7 @@ function ProjectDetailPage() {
       {project.highlights && project.highlights.length > 0 && (
         <section className="project-section">
 
-          <p className="project-section-label">
-            04 / Key features
-          </p>
+          <p className="project-section-label"><Trans text="04 / Key features" /></p>
 
           <div className="project-feature-grid">
 
@@ -247,7 +252,7 @@ function ProjectDetailPage() {
                   </span>
 
                   <p>
-                    {highlight}
+                    <Trans text={highlight} />
                   </p>
                 </div>
               )
@@ -264,9 +269,7 @@ function ProjectDetailPage() {
         project.responsibilities.length > 0 && (
           <section className="project-section">
 
-            <p className="project-section-label">
-              05 / What I worked on
-            </p>
+            <p className="project-section-label"><Trans text="05 / What I worked on" /></p>
 
             <div className="project-number-list">
 
@@ -281,7 +284,7 @@ function ProjectDetailPage() {
                     </span>
 
                     <p>
-                      {item}
+                      <Trans text={item} />
                     </p>
                   </div>
                 )
@@ -297,21 +300,16 @@ function ProjectDetailPage() {
       {project.learnings && project.learnings.length > 0 && (
         <section className="project-section project-learning-section">
 
-          <p className="project-section-label">
-            06 / What I learned
-          </p>
+          <p className="project-section-label"><Trans text="06 / What I learned" /></p>
 
-          <h2>
-            Building it taught me more than
-            simply finishing the feature.
-          </h2>
+          <h2><Trans text="Building it taught me more than simply finishing the feature." /></h2>
 
           <div className="project-learning-grid">
 
             {project.learnings.map(
               (learning, index) => (
                 <p key={`${learning}-${index}`}>
-                  {learning}
+                  <Trans text={learning} />
                 </p>
               )
             )}
@@ -331,9 +329,7 @@ function ProjectDetailPage() {
               href={project.github}
               target="_blank"
               rel="noreferrer"
-            >
-              GitHub ↗
-            </a>
+            ><Trans text="GitHub ↗" /></a>
           )}
 
           {project.demo && (
@@ -341,9 +337,7 @@ function ProjectDetailPage() {
               href={project.demo}
               target="_blank"
               rel="noreferrer"
-            >
-              Live project ↗
-            </a>
+            ><Trans text="Live project ↗" /></a>
           )}
 
         </section>
@@ -353,13 +347,9 @@ function ProjectDetailPage() {
 
       <section className="project-detail-footer">
 
-        <p>
-          More things I've made
-        </p>
+        <p><Trans text="More things I've made" /></p>
 
-        <Link to="/projects">
-          View all projects →
-        </Link>
+        <Link to="/projects"><Trans text="View all projects →" /></Link>
 
       </section>
 

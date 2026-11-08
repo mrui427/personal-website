@@ -1,3 +1,4 @@
+import { Trans } from '../i18n/Language'
 import './ContactPage.css'
 
 function ContactPage() {
@@ -6,22 +7,11 @@ function ContactPage() {
 
       <section className="contact-hero">
 
-        <p className="contact-eyebrow">
-          Contact
-        </p>
+        <p className="contact-eyebrow"><Trans text="Contact" /></p>
 
-        <h1>
-          Have something
-          <br />
-          in mind?
-          <br />
-          Let's talk.
-        </h1>
+        <h1><Trans text="Have something" /><br /><Trans text="in mind?" /><br /><Trans text="Let's talk." /></h1>
 
-        <p className="contact-intro">
-          I'm open to software engineering, full-stack and AI application
-          opportunities, as well as interesting projects and collaborations.
-        </p>
+        <p className="contact-intro"><Trans text="I'm open to software engineering, full-stack and AI application opportunities, as well as interesting projects and collaborations." /></p>
 
       </section>
 
@@ -31,13 +21,9 @@ function ContactPage() {
           href="mailto:your-email@example.com"
           className="contact-row"
         >
-          <span className="contact-row-label">
-            Email
-          </span>
+          <span className="contact-row-label"><Trans text="Email" /></span>
 
-          <span className="contact-row-value">
-            your-email@example.com
-          </span>
+          <span className="contact-row-value"><Trans text="mruiecin@gmail.com" /></span>
 
           <span className="contact-row-arrow">
             ↗
@@ -50,13 +36,9 @@ function ContactPage() {
           rel="noreferrer"
           className="contact-row"
         >
-          <span className="contact-row-label">
-            LinkedIn
-          </span>
+          <span className="contact-row-label"><Trans text="LinkedIn" /></span>
 
-          <span className="contact-row-value">
-            Let's connect
-          </span>
+          <span className="contact-row-value"><Trans text="www.linkedin.com/in/mingrui-zhang-73b07a37b" /></span>
 
           <span className="contact-row-arrow">
             ↗
@@ -69,13 +51,9 @@ function ContactPage() {
           rel="noreferrer"
           className="contact-row"
         >
-          <span className="contact-row-label">
-            GitHub
-          </span>
+          <span className="contact-row-label"><Trans text="GitHub" /></span>
 
-          <span className="contact-row-value">
-            See what I'm building
-          </span>
+          <span className="contact-row-value"><Trans text="See what I'm building" /></span>
 
           <span className="contact-row-arrow">
             ↗
@@ -87,47 +65,30 @@ function ContactPage() {
       <section className="contact-meta-section">
 
         <div className="contact-meta-item">
-          <span>Based in</span>
+          <span><Trans text="Based in" /></span>
 
-          <p>
-            Sydney, Australia
-          </p>
+          <p><Trans text="Sydney, Australia" /></p>
         </div>
 
         <div className="contact-meta-item">
-          <span>Interested in</span>
+          <span><Trans text="Interested in" /></span>
 
-          <p>
-            Software Engineering
-            <br />
-            Full-stack Development
-            <br />
-            AI Applications
-          </p>
+          <p><Trans text="Software Engineering" /><br /><Trans text="Full-stack Development" /><br /><Trans text="AI Applications" /></p>
         </div>
 
         <div className="contact-meta-item">
-          <span>Currently</span>
+          <span><Trans text="Currently" /></span>
 
-          <p>
-            Building, learning and looking for
-            the next thing worth working on.
-          </p>
+          <p><Trans text="Building, learning and looking for the next thing worth working on." /></p>
         </div>
 
       </section>
 
       <section className="contact-ending">
 
-        <p>
-          Thanks for stopping by.
-        </p>
+        <p><Trans text="Thanks for stopping by." /></p>
 
-        <h2>
-          See you somewhere
-          <br />
-          on the internet.
-        </h2>
+        <h2><Trans text="See you somewhere" /><br /><Trans text="on the internet." /></h2>
 
       </section>
 

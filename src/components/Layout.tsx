@@ -1,3 +1,4 @@
+import { Trans } from '../i18n/Language'
 import { Outlet } from 'react-router-dom'
 
 import Navbar from './Navbar'
@@ -13,7 +14,7 @@ function Layout() {
       </div>
 
       <footer className="site-footer">
-        <p>© 2026 Mingrui Zhang · Baicai</p>
+        <p><Trans text="© 2026 Mingrui Zhang · Baicai" /></p>
       </footer>
     </>
   )
